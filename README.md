@@ -40,21 +40,9 @@ end
 
 ## Notes
 
-In my experience, you need to register a host *before* starting the Logentries service. Your flow should be something like this:
+Logentries is split into two packages, `logentries` and `logentries-daemon`, the former contains the command-line tools and the latter is the reporting agent. Unfortunately, when you install the `logentries-daemon` package it immediately tries to start the agent and will fail if you haven't pre-configured your host settings; this is problematic in a Chef script, because we haven't had an opportunity to set things up yet.
 
-```ruby
-logentries do
-  action :register
-end
-
-service 'logentries' do
-  action :start
-end
-
-logentries '/var/log/mylog' do
-  action :follow
-end
-```
+To solve this problem, the commandline tools are installed immediately, then the `logentries-daemon` package will only be installed at the end of your chef run; it will be triggered by the use of any of the `logentries` definitions.
 
 ## Contributing
 

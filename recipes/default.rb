@@ -7,4 +7,7 @@ apt_repository 'logentries' do
   key 'C43C79AD'
 end
 
-package 'logentries-daemon'
+package 'logentries'
+package 'logentries-daemon' do
+  action :nothing
+end

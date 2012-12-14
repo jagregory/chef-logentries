@@ -16,36 +16,42 @@ define :logentries do
     execute "logentries init" do
       user defaults[:user]
       command 'le init'
+      notifies :install, 'package[logentries-daemon]'
     end
   
   when :reinit
     execute "logentries reinit" do
       user defaults[:user]
       command 'le reinit'
+      notifies :install, 'package[logentries-daemon]'
     end
 
   when :clean
     execute "logentries clean" do
       user defaults[:user]
       command 'le clean'
+      notifies :install, 'package[logentries-daemon]'
     end
 
   when :rm, :remove
     execute "logentries rm #{defaults[:name]}" do
       user defaults[:user]
       command %Q(le rm "#{defaults[:name]}")
+      notifies :install, 'package[logentries-daemon]'
     end
 
   when :pull
     execute "logentries pull #{defaults[:name]}" do
       user defaults[:user]
       command %Q(le pull "#{defaults[:name]}" #{defaults[:when]} #{defaults[:filter]} #{defaults[:limit]})
+      notifies :install, 'package[logentries-daemon]'
     end
 
   when :push
     execute "logentries push #{defaults[:name]}" do
       user defaults[:user]
       command %Q(le push "#{defaults[:name]}" #{defaults[:when]} #{defaults[:filter]} #{defaults[:limit]})
+      notifies :install, 'package[logentries-daemon]'
     end
 
   when :register
@@ -57,6 +63,7 @@ define :logentries do
       user defaults[:user]
       command script.flatten.join ' '
       not_if "grep -qE '^agent-key = .+$' /etc/le/config" unless !!defaults[:force]
+      notifies :install, 'package[logentries-daemon]'
     end
 
   when :follow
@@ -68,6 +75,7 @@ define :logentries do
       user defaults[:user]
       command script.flatten.join ' '
       not_if %Q(sudo le followed "#{defaults[:name]}")
+      notifies :install, 'package[logentries-daemon]'
     end
   end
 end
