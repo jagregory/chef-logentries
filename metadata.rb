@@ -11,4 +11,4 @@ recipe "logentries", "Set up the apt repository and install the logentries packa
 depends "apt"
 
 supports "ubuntu"
-provides "logentries()"
+provides "logentries"
