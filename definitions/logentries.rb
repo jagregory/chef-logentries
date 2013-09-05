@@ -63,7 +63,7 @@ define :logentries do
       user defaults[:user]
       command script.flatten.join ' '
       not_if "grep -qE '^agent-key = .+$' /etc/le/config" unless !!defaults[:force]
-      notifies :install, 'package[logentries-daemon]'
+      notifies :install, 'package[logentries-daemon]', :immediate
     end
 
   when :follow

@@ -29,5 +29,5 @@
   "recipes": {
     "logentries": "Set up the apt repository and install the logentries package"
   },
-  "version": "0.1.2"
+  "version": "0.1.3"
 }

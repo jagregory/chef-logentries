@@ -8,7 +8,9 @@ apt_repository 'logentries' do
 end
 
 package 'logentries'
-package 'logentries-daemon'
+package 'logentries-daemon' do
+  action :nothing
+end
 
 service 'logentries' do
   supports [:start, :stop, :restart, :reload]
