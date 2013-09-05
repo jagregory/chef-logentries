@@ -38,6 +38,21 @@ logentries '/var/log/syslog' do
 end
 ```
 
+You can use logentries from a json node config too by specifying a logentries element in your config with an `account_key`, `server_name`, and optionally some `log_files`.
+
+```json
+{
+  "logentries": {
+    "account_key": "abcdefgh-ijkl-mnop-qrst-uvwxyz123456",
+    "server_name": "My Server",
+    "log_files": {
+      "App Server": "/var/www/myapp/log/production.log",
+      "Syslog": "/var/log/syslog"
+    }
+  }
+}
+```
+
 ## Notes
 
 Logentries is split into two packages, `logentries` and `logentries-daemon`, the former contains the command-line tools and the latter is the reporting agent. Unfortunately, when you install the `logentries-daemon` package it immediately tries to start the agent and will fail if you haven't pre-configured your host settings; this is problematic in a Chef script, because we haven't had an opportunity to set things up yet.
