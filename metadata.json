@@ -9,7 +9,8 @@
     "ubuntu": ">= 0.0.0"
   },
   "dependencies": {
-    "apt": ">= 0.0.0"
+    "apt": ">= 0.0.0",
+    "yum": ">= 0.0.0"
   },
   "recommendations": {
   },
@@ -29,5 +30,5 @@
   "recipes": {
     "logentries": "Set up the apt repository and install the logentries package"
   },
-  "version": "0.1.3"
+  "version": "0.1.4"
 }
