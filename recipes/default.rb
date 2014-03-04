@@ -1,5 +1,4 @@
 include_recipe 'apt'
-#include_recipe 'yum'
 
 case node['platform']
   when "ubuntu"
