@@ -11,6 +11,7 @@ Installs the [Logentries](http://logentries.com) [Agent](http://logentries.com/d
 The following platforms are supported by this cookbook, meaning that the recipes run on these platforms without error:
 
 * Ubuntu
+* Amazon Linux
 
 ## Recipes
 
