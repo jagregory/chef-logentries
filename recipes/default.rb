@@ -1,13 +1,27 @@
 include_recipe 'apt'
+#include_recipe 'yum'
 
-apt_repository 'logentries' do
-  uri 'http://rep.logentries.com/'
-  components ['precise', 'main']
-  keyserver 'pgp.mit.edu'
-  key 'C43C79AD'
+case node['platform']
+  when "ubuntu"
+    apt_repository 'logentries' do
+      uri 'http://rep.logentries.com/'
+      components ['precise', 'main']
+      keyserver 'pgp.mit.edu'
+      key 'C43C79AD'
+    end
+  when "amazon"
+    cookbook_file "logentries.repo" do
+      source "logentries.repo"
+      path "/etc/yum.repos.d/logentries.repo"
+      owner "root"
+      group "root"
+      mode 0644
+      action :create_if_missing
+    end
 end
 
-package 'logentries'
+
+package 'logentries' 
 package 'logentries-daemon' do
   action :nothing
 end
