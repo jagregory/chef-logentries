@@ -5,7 +5,7 @@ case node['platform']
     apt_repository 'logentries' do
       uri 'http://rep.logentries.com/'
       components ['precise', 'main']
-      keyserver 'pgp.mit.edu'
+      keyserver 'hkp://pgp.mit.edu:80'
       key 'C43C79AD'
     end
   when "amazon"
@@ -20,7 +20,7 @@ case node['platform']
 end
 
 
-package 'logentries' 
+package 'logentries'
 package 'logentries-daemon' do
   action :nothing
 end
