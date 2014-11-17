@@ -4,7 +4,8 @@ case node['platform']
   when "ubuntu"
     apt_repository 'logentries' do
       uri 'http://rep.logentries.com/'
-      components ['precise', 'main']
+      distribution node.lsb.codename
+      components ['main']
       keyserver 'hkp://pgp.mit.edu:80'
       key 'C43C79AD'
     end
