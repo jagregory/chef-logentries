@@ -4,7 +4,8 @@ case node['platform']
   when "ubuntu"
     apt_repository 'logentries' do
       uri 'http://rep.logentries.com/'
-      components ['precise', 'main']
+      distribution node.lsb.codename
+      components ['main']
       keyserver 'hkp://pgp.mit.edu:80'
       key 'C43C79AD'
     end
@@ -60,7 +61,7 @@ end
 
 # start the service if it isn't. We do it like this because logentries
 # start borks if the service is already running.
-service 'logentries' do
-  action :start
-  not_if 'service logentries status' # status returns 0 if the service is running
-end
+#service 'logentries' do
+#  action :start
+#  not_if 'service logentries status' # status returns 0 if the service is running
+#end
