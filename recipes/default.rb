@@ -8,17 +8,16 @@ case node['platform']
       keyserver 'hkp://pgp.mit.edu:80'
       key 'C43C79AD'
     end
-  when "amazon"
-    cookbook_file "logentries.repo" do
+  when "amazon", "rhel", "centos"
+    template "logentries.repo" do
       source "logentries.repo"
       path "/etc/yum.repos.d/logentries.repo"
       owner "root"
       group "root"
       mode 0644
-      action :create_if_missing
+      action :create
     end
 end
-
 
 package 'logentries'
 package 'logentries-daemon' do
