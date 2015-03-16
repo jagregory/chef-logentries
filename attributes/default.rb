@@ -1,0 +1,1 @@
+default['logentries']['yum_repo_url'] = "baseurl=http://rep.logentries.com/<%= node['platform'] %>$releasever/$basearch"
