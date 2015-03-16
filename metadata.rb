@@ -4,7 +4,7 @@ maintainer_email "james@jagregory.com"
 license          "MIT"
 description      "Installs and manages Logentries."
 long_description IO.read(File.join(File.dirname(__FILE__), "README.md"))
-version          "0.1.7"
+version          "0.1.8"
 
 recipe "logentries", "Set up the apt repository and install the logentries package"
 
