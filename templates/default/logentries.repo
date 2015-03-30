@@ -1,0 +1,14 @@
+[logentries]
+name=Logentries repo
+enabled=1
+metadata_expire=1d
+
+<% if node['logentries']['yum_repo_url'].nil? -%>
+baseurl=http://rep.logentries.com/<%= node['platform'] %>$releasever/$basearch
+<% else -%>
+baseurl=<%= node['logentries']['yum_repo_url'] %>
+<% end -%>
+
+gpgkey=http://rep.logentries.com/RPM-GPG-KEY-logentries
+
+
